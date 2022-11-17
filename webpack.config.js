@@ -64,14 +64,17 @@ module.exports = {
     ],
   },
   plugins: [
+    // HTML loader
     new HtmlWebPackPlugin({
       inject: true,
       template: "./public/index.html",
       filename: "./index.html",
     }),
+    // CSS loader
     new MiniCssExtractPlugin({
       filename: "assets/[name].[contenthash].css",
     }),
+    // Copy path
     new CopyPlugin({
       patterns: [
         {
@@ -80,8 +83,10 @@ module.exports = {
         },
       ],
     }),
+    // ENV variables loader
     new DotEnv(),
   ],
+  // Optimizations
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
