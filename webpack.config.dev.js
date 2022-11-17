@@ -9,6 +9,8 @@ const DotEnv = require("dotenv-webpack");
 module.exports = {
   // DEVELPMENT MODE
   mode: "development",
+  // Watch Mode enabled
+  watch: true,
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
