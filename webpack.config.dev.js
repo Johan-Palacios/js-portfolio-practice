@@ -2,15 +2,14 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 const DotEnv = require("dotenv-webpack");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer");
 
 module.exports = {
   // DEVELPMENT MODE
   mode: "development",
   // Watch Mode enabled
-  watch: true,
+  // watch: true,
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -89,10 +88,17 @@ module.exports = {
     }),
     // ENV variables loader
     new DotEnv(),
+    // BUNDLE
+    // USAGE: npx webpack --profile --json > stats.json
+    // npx webpack-bundle-analyzer stats.json
+    new BundleAnalyzerPlugin(),
   ],
-  // Optimizations
-  optimization: {
-    minimize: true,
-    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+  // DEV SERVER
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    compress: true,
+    historyApiFallback: true,
+    port: 5500,
+    open: true,
   },
 };
