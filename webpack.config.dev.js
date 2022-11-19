@@ -3,11 +3,13 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const DotEnv = require("dotenv-webpack");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 module.exports = {
   // DEVELPMENT MODE
   mode: "development",
+  // DEV TOOLS
+  devtool: "source-map",
   // Watch Mode enabled
   // watch: true,
   entry: "./src/index.js",
